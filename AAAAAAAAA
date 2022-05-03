@@ -1,0 +1,34 @@
+local CombatFrameR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+local Amongus = getupvalues(CombatFrameR)[2]
+local Cemara = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.CameraShaker)
+Cemara.CameraShakeInstance.CameraShakeState = {FadingIn = 3, FadingOut = 2, Sustained = 0, Inactive = 1}
+
+spawn(function()
+    pcall(function()
+        for i,v in pairs(Amongus.activeController) do
+            game:GetService("RunService").Stepped:Connect(function()
+                if _G.Farm then
+                    Amongus.activeController.timeToNextAttack = -(math.huge ^ math.huge ^ math.huge)
+                    Amongus.activeController.timeToNextBlock = -(math.huge ^ math.huge ^ math.huge)
+                    Amongus.activeController.increment = 3
+                    Amongus.activeController.attacking = false
+                    Amongus.activeController.hitboxMagnitude = 50
+                    Amongus.activeController.increment = 9999
+                    Amongus.activeController.focusStart = -(math.huge ^ math.huge ^ math.huge)
+                    if Amongus.activeController:attack() then
+                        Amongus.activeController:attack()
+                    end
+                end
+            end)
+        end
+    end)
+end)
+spawn(function()
+    if _G.Farm then
+        local a = require(game:GetService("ReplicatedStorage").Wrapper)
+        local old
+        old = hookfunction(a,function(a) 
+            return a()
+        end)
+    end
+end)
